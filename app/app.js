@@ -31,6 +31,13 @@
                 controller: 'Profesor.IndexController',
                 controllerAs: 'vm',
                 data: { activeTab: 'profesor' }
+            })
+             .state('addProfesor',{
+                url:'/addProfesor',
+                templateUrl:'profesor/add.html',
+                controller:'Profesor.IndexController',
+                controllerAs:'vm',
+                data:{activeTab: 'profesor'}
             });
     }
 

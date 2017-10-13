@@ -15,9 +15,6 @@
             <li ng-class="{active: activeTab === 'account'}"><a ui-sref="account">Mi cuenta</a></li>
             <li><a href="/login" target="_self">Salir</a></li>
         </ul>
-        <div class="flash-message" ng-if="flash">
-            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
-        </div>
     </header>
       
     <!-- main -->
