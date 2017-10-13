@@ -1,0 +1,44 @@
+﻿
+ <div class="container">
+  <h2>Editar profesor</h2>
+    
+    <div class="flash-message" ng-if="flash">
+            <div class="{{'alert alert-' + flash.type}}" ng-bind="flash.message"></div>
+    </div>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Nombre:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-controlInsertar" name="nombre" ng-model="vm.profesor.nombre">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Apellidos:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-controlInsertar" name="Apellidos" ng-model="vm.profesor.apellidos">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Direccion:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-controlInsertar"  name="Direccion" ng-model="vm.profesor.direccion">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Telefono:</label>
+      <div class="col-sm-10">          
+        <input type="number" class="form-controlInsertar" name="Telefono" ng-model="vm.profesor.telefono">
+      </div>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" ng-click="vm.editarProfesor()">Modificar</button>
+      </div>
+    </div>
+  </form>
+</div>

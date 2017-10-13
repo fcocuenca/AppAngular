@@ -67,9 +67,18 @@ function update(ProfParam){
 
     var deferred = Q.defer();
     
+    var nombre = ProfParam.nombre;
+    var apellidos = ProfParam.apellidos;
+    var direccion = ProfParam.direccion;
+    var telefono = ProfParam.telefono;
     var id= ProfParam._id;
+
     var set = { 
-                
+        
+        nombre: nombre,
+        apellidos: apellidos,
+        direccion: direccion,
+        telefono: telefono,
     };
 
     db.profesor.update(

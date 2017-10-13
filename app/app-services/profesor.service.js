@@ -24,11 +24,11 @@
         }
 
         function Update(prof) {
-            return $http.put('/api/profesor/modificarprofesor/' + prof._id, prof).then(handleSuccess, handleError);
+            return $http.post('/api/profesor/modificarProfesor', prof).then(handleSuccess, handleError);
         }
 
-        function Delete(_id) {
-            return $http.delete('/api/profesor/borrarprofesor/' + _id).then(handleSuccess, handleError);
+        function Delete(prof) {
+            return $http.post('/api/profesor/borrarProfesor', prof).then(handleSuccess, handleError);
         }
 
         // private functions

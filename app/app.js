@@ -38,6 +38,13 @@
                 controller:'Profesor.IndexController',
                 controllerAs:'vm',
                 data:{activeTab: 'profesor'}
+            })
+             .state('editProfesor',{
+                url:'/editProfesor',
+                templateUrl:'profesor/edit.html',
+                controller:'Profesor.IndexController',
+                controllerAs:'vm',
+                data:{activeTab: 'profesor'}
             });
     }
 

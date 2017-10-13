@@ -9,7 +9,7 @@ var profesorService = require('services/profesor.service');
 router.post('/crearProfesor', crearProf);
 router.get('/currentProf', getCurrentProf);
 router.post('/borrarProfesor', borrarProf);
-router.post('/modificarprofesor', modificarprofesor);
+router.put('/modificarProfesor', modificarprof);
 
 module.exports = router;
 
@@ -47,7 +47,7 @@ function borrarProf(req, res) {
     });
 }
 
-function modificarprofesor(req, res) {
+function modificarprof(req, res) {
     profesorService.update(req.body)
     .then(function () {
         res.sendStatus(200);

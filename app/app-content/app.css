@@ -77,3 +77,38 @@
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+
+.modal-contentCat {
+    position: relative;
+    margin: 8% 0px 0px 30%;
+    width: 62%;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+.box {
+    position: relative;
+    background: #f9f9f9;
+    border-top: 2px solid #c1c1c1;
+    margin-bottom: 5px;
+    margin-top: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 100%;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+.box-solid {
+    border-top: 0px;
+}
+
+.box-success {
+    border-top-color: #00a65a;
+}
