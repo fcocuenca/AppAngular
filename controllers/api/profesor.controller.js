@@ -9,7 +9,7 @@ var profesorService = require('services/profesor.service');
 router.post('/crearProfesor', crearProf);
 router.get('/currentProf', getCurrentProf);
 router.post('/borrarProfesor', borrarProf);
-router.put('/modificarProfesor', modificarprof);
+router.post('/modificarProfesor', modificarprof);
 
 module.exports = router;
 

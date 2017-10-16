@@ -6,6 +6,8 @@
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
     <link href="app-content/app.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="container">
     <!-- header -->
@@ -22,7 +24,7 @@
       <div id="menu">
             <ul>
                 <li><a ui-sref="profesor"><ng-class="{active: activeTab ==='profesor'}">Profesor</a></li>
-              <li><a href="" title="alumno">Alumno</a></li>
+              <li><a ui-sref="alumno"><ng-class="{active: activeTab ==='alumno'}">Alumno</a></li>
               <li><a href="" title="generar informe">Generar informe</a></li>
             </ul>
         </div>
@@ -45,9 +47,12 @@
     <script src="app.js"></script>
     <script src="app-services/user.service.js"></script>
     <script src="app-services/profesor.service.js"></script>
+    <script src="app-services/alumno.service.js"></script>
+
     <script src="app-services/flash.service.js"></script>
     <script src="home/index.controller.js"></script>
     <script src="account/index.controller.js"></script>
     <script src="profesor/index.controller.js"></script>
+    <script src="alumno/index.controller.js"></script>
 </body>
 </html>

@@ -39,12 +39,19 @@
                 controllerAs:'vm',
                 data:{activeTab: 'profesor'}
             })
-             .state('editProfesor',{
-                url:'/editProfesor',
-                templateUrl:'profesor/edit.html',
-                controller:'Profesor.IndexController',
+             .state('alumno', {
+                url: '/alumno',
+                templateUrl: 'alumno/index.html',
+                controller: 'Alumno.IndexController',
+                controllerAs: 'vm',
+                data: { activeTab: 'alumno' }
+            })
+             .state('addAlumno',{
+                url:'/addAlumno',
+                templateUrl:'alumno/add.html',
+                controller:'Alumno.IndexController',
                 controllerAs:'vm',
-                data:{activeTab: 'profesor'}
+                data:{activeTab: 'alumno'}
             });
     }
 

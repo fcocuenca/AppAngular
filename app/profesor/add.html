@@ -37,8 +37,18 @@
 
     <div class="form-group">        
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default" ng-click="vm.crearProfesor()">Insertar</button>
+        <button type="submit" class="btn btn-default" ng-click="vm.crearProfesor()" onclick="recargaTime()">Insertar</button>
       </div>
     </div>
   </form>
 </div>
+
+<script>
+
+function recargaTime() {
+  setTimeout(function(){
+      window.location.reload(1);
+  }, 300);
+}
+
+</script>

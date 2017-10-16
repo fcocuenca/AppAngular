@@ -21,6 +21,7 @@ app.use('/register', require('./controllers/register.controller'));
 app.use('/app', require('./controllers/app.controller'));
 app.use('/api/users', require('./controllers/api/users.controller'));
 app.use('/api/profesor', require('./controllers/api/profesor.controller'));
+app.use('/api/alumno', require('./controllers/api/alumno.controller'));
 
 //Almacenamiento de imagenes para las vistas
 app.use(express.static("public"))

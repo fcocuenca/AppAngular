@@ -5,150 +5,87 @@ var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
 var db = mongo.db(config.connectionString, { native_parser: true });
-db.bind('users');
+db.bind('alumno');
 
 var service = {};
 
-service.authenticate = authenticate;
-service.getById = getById;
 service.create = create;
-service.update = update;
+service.getById = getById;
 service.delete = _delete;
+service.update = update;
 
 module.exports = service;
 
-function authenticate(username, password) {
+function create(AlumParam){
+
     var deferred = Q.defer();
+   
+    db.alumno.insert(
+    AlumParam,
+    function(err, doc){
+            if(err) deferred.reject(err);
 
-    db.users.findOne({ username: username }, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-
-        if (user && bcrypt.compareSync(password, user.hash)) {
-            // authentication successful
-            deferred.resolve(jwt.sign({ sub: user._id }, config.secret));
-        } else {
-            // authentication failed
             deferred.resolve();
-        }
     });
 
     return deferred.promise;
 }
 
-function getById(_id) {
+function getById(){
     var deferred = Q.defer();
 
-    db.users.findById(_id, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+    var mysort = {_id: 1};
 
-        if (user) {
-            // return user (without hashed password)
-            deferred.resolve(_.omit(user, 'hash'));
-        } else {
-            // user not found
-            deferred.resolve();
-        }
-    });
+    db.alumno.find().sort(mysort).toArray(function(err, alum){
+            if(err) deferred.reject(err);
 
-    return deferred.promise;
-}
-
-function create(userParam) {
-    var deferred = Q.defer();
-
-    // validation
-    db.users.findOne(
-        { username: userParam.username },
-        function (err, user) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
-
-            if (user) {
-                // username already exists
-                deferred.reject('Username "' + userParam.username + '" is already taken');
-            } else {
-                createUser();
-            }
-        });
-
-    function createUser() {
-        // set user object to userParam without the cleartext password
-        var user = _.omit(userParam, 'password');
-
-        // add hashed password to user object
-        user.hash = bcrypt.hashSync(userParam.password, 10);
-
-        db.users.insert(
-            user,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
-
+            if(alum){
+                    deferred.resolve(alum);
+            }else{
                 deferred.resolve();
-            });
-    }
-
+            }       
+    });
     return deferred.promise;
 }
 
-function update(_id, userParam) {
+function _delete(AlumParam){
+    
     var deferred = Q.defer();
+    var id= AlumParam._id;
 
-    // validation
-    db.users.findById(_id, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-
-        if (user.username !== userParam.username) {
-            // username has changed so check if the new username is already taken
-            db.users.findOne(
-                { username: userParam.username },
-                function (err, user) {
-                    if (err) deferred.reject(err.name + ': ' + err.message);
-
-                    if (user) {
-                        // username already exists
-                        deferred.reject('Username "' + req.body.username + '" is already taken')
-                    } else {
-                        updateUser();
-                    }
-                });
-        } else {
-            updateUser();
-        }
+    db.alumno.remove(
+    {_id: mongo.helper.toObjectID(AlumParam._id)},
+    function(err){
+        if(err) deferred.reject(err);
+        
+        deferred.resolve();
     });
+    return deferred.promise;
+}
 
-    function updateUser() {
-        // fields to update
-        var set = {
-            firstName: userParam.firstName,
-            lastName: userParam.lastName,
-            username: userParam.username,
+function update(AlumParam){
+
+    var deferred = Q.defer();
+    
+    var id= AlumParam._id;
+    var nombre = AlumParam.nombre;
+    var apellidos = AlumParam.apellidos;
+    var direccion = AlumParam.direccion; 
+    var telefono = AlumParam.telefono;
+
+        var set = { 
+                    nombre: nombre,
+                    apellidos: apellidos,
+                    direccion: direccion,
+                    telefono: telefono,
         };
 
-        // update password if it was entered
-        if (userParam.password) {
-            set.hash = bcrypt.hashSync(userParam.password, 10);
-        }
-
-        db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
-            { $set: set },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
-
-                deferred.resolve();
-            });
-    }
-
-    return deferred.promise;
-}
-
-function _delete(_id) {
-    var deferred = Q.defer();
-
-    db.users.remove(
-        { _id: mongo.helper.toObjectID(_id) },
-        function (err) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
-
+        db.alumno.update(
+        {_id: mongo.helper.toObjectID(AlumParam._id)},
+        {$set: set},
+        function(err){
+            if(err) deferred.reject(err);
+            
             deferred.resolve();
         });
 

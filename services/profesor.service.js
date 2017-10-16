@@ -67,28 +67,27 @@ function update(ProfParam){
 
     var deferred = Q.defer();
     
+    var id= ProfParam._id;
     var nombre = ProfParam.nombre;
     var apellidos = ProfParam.apellidos;
-    var direccion = ProfParam.direccion;
+    var direccion = ProfParam.direccion; 
     var telefono = ProfParam.telefono;
-    var id= ProfParam._id;
 
-    var set = { 
-        
-        nombre: nombre,
-        apellidos: apellidos,
-        direccion: direccion,
-        telefono: telefono,
-    };
+        var set = { 
+                    nombre: nombre,
+                    apellidos: apellidos,
+                    direccion: direccion,
+                    telefono: telefono,
+        };
 
-    db.profesor.update(
-    {_id: mongo.helper.toObjectID(ProfParam._id)},
-    {$set: set},
-    function(err){
-        if(err) deferred.reject(err);
+        db.profesor.update(
+        {_id: mongo.helper.toObjectID(ProfParam._id)},
+        {$set: set},
+        function(err){
+            if(err) deferred.reject(err);
             
-        deferred.resolve();
-    });
+            deferred.resolve();
+        });
 
     return deferred.promise;
 }
